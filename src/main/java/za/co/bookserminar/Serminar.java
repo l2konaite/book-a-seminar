@@ -13,6 +13,7 @@ public class Serminar {
 
 	protected String username;
 	protected String email;
+	protected String password;
 	
 	public Serminar(){}
 
@@ -32,6 +33,14 @@ public class Serminar {
 		this.email = email;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public void validateEmail(FacesContext facesContext,UIComponent uiComponent,Object toValidate){
 	
 		FacesMessage message = null;
@@ -41,18 +50,23 @@ public class Serminar {
 		}
 	}
 	
-	public String addNewUser(boolean status){
+	public String addUser(){
 		String outcome = null;
 		FacesMessage message = null;
+		boolean status = true;
 		
 		if(status){
-			outcome = "success";
+			outcome = "register";
 			message = new FacesMessage("User added successfully");
 		}else{
-			outcome = "failure";
+			outcome = "login";
 			message = new FacesMessage("There was an error that occured..");
 		}
-		FacesContext.getCurrentInstance().addMessage(outcome, message);
+		FacesContext.getCurrentInstance().addMessage(null, message);
 		return outcome;
+	}
+	
+	public String signUp(){
+		return "login";
 	}
 }
